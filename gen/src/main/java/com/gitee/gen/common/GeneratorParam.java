@@ -38,6 +38,11 @@ public class GeneratorParam {
      */
     private String delFieldPrefix;
 
+    /**
+     * 用户
+     */
+    private String author;
+
     private String charset = "UTF-8" ;
 
     public int getDatasourceConfigId() {
@@ -96,6 +101,14 @@ public class GeneratorParam {
         this.charset = charset;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("{");
@@ -111,6 +124,8 @@ public class GeneratorParam {
                 .append(delTablePrefix).append('\"');
         sb.append(",\"delFieldPrefix\":\"")
                 .append(delFieldPrefix).append('\"');
+        sb.append(",\"author\":\"")
+                .append(author).append('\"');
         sb.append(",\"charset\":\"")
                 .append(charset).append('\"');
         sb.append('}');

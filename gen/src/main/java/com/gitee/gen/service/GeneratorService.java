@@ -2,15 +2,11 @@ package com.gitee.gen.service;
 
 import com.gitee.gen.common.GeneratorParam;
 import com.gitee.gen.entity.TemplateConfig;
-import com.gitee.gen.gen.CodeFile;
-import com.gitee.gen.gen.GeneratorConfig;
-import com.gitee.gen.gen.SQLContext;
-import com.gitee.gen.gen.SQLService;
-import com.gitee.gen.gen.SQLServiceFactory;
-import com.gitee.gen.gen.TableDefinition;
-import com.gitee.gen.gen.TableSelector;
+import com.gitee.gen.gen.*;
 import com.gitee.gen.util.FormatUtil;
 import com.gitee.gen.util.VelocityUtil;
+import com.gitee.gen.util.date.DateFormat;
+import com.gitee.gen.util.date.DateUtils;
 import org.apache.velocity.VelocityContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -18,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
@@ -55,6 +52,7 @@ public class GeneratorService {
             setPackageName(sqlContext, generatorParam.getPackageName());
             setDelTablePrefix(sqlContext, generatorParam.getDelTablePrefix());
             setDelFieldPrefix(sqlContext, generatorParam.getDelFieldPrefix());
+            setAuthor(sqlContext, generatorParam.getAuthor());
             for (int tcId : generatorParam.getTemplateConfigIdList()) {
                 TemplateConfig template = templateConfigService.getById(tcId);
                 String folder = template.getName();
@@ -129,6 +127,17 @@ public class GeneratorService {
         }
     }
 
+    private void setAuthor(SQLContext sqlContext, String author) {
+        if (StringUtils.hasText(author)) {
+            sqlContext.setAuthor(author);
+        } else {
+            sqlContext.setAuthor("");
+        }
+    }
+
+    /**
+     * [core] 生成文件
+     */
     private String doGenerator(SQLContext sqlContext, String template) {
         if (template == null) {
             return "" ;
@@ -140,6 +149,10 @@ public class GeneratorService {
         context.put("pk", sqlContext.getTableDefinition().getPkColumn());
         context.put("columns", sqlContext.getTableDefinition().getColumnDefinitions());
         context.put("csharpColumns", sqlContext.getTableDefinition().getCsharpColumnDefinitions());
+        context.put("author", sqlContext.getAuthor());
+        Date nowDate = new Date();
+        context.put("datetime", DateUtils.dateToFormat(nowDate, DateFormat.YYYY_MM_dd8HH0mm0ss));
+        context.put("year", DateUtils.dateToFormat(nowDate, DateFormat.YYYY));
 
         return VelocityUtil.generate(context, template);
     }

@@ -34,6 +34,9 @@
       <el-form-item v-show="showTable" label="删除字段前缀">
         <el-input v-model="clientParam.delFieldPrefix" placeholder="可选，如：c_user_info对应字段userInfo(多前缀逗号隔开)" show-word-limit maxlength="100" />
       </el-form-item>
+      <el-form-item v-show="showTable" label="编辑者">
+        <el-input v-model="clientParam.author" placeholder="可选" show-word-limit maxlength="20" />
+      </el-form-item>
     </el-form>
     <el-row v-show="showTable" :gutter="20">
       <el-col :span="12">
@@ -215,6 +218,7 @@ export default {
         packageName: '',
         delTablePrefix: '',
         delFieldPrefix: '',
+        author: '',
         groupId: ''
       },
       tableSearch: '',
@@ -235,6 +239,7 @@ export default {
         packageName: '',
         delTablePrefix: '',
         delFieldPrefix: '',
+        author: '',
         groupId: ''
       },
       dbTypeConfig: [],

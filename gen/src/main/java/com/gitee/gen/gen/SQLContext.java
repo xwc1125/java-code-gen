@@ -42,6 +42,10 @@ public class SQLContext {
      * 数据库名
      */
     private String dbName;
+    /**
+     * Author
+     */
+    private String author;
 
     public SQLContext(TableDefinition tableDefinition) {
         this.tableDefinition = tableDefinition;
@@ -173,4 +177,11 @@ public class SQLContext {
         this.dbName = dbName;
     }
 
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
 }
