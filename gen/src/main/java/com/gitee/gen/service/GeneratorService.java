@@ -97,7 +97,7 @@ public class GeneratorService {
         List<SQLContext> contextList = new ArrayList<>();
         SQLService service = SQLServiceFactory.build(generatorConfig);
 
-        TableSelector tableSelector = service.getTableSelector(generatorConfig);
+        TableSelector tableSelector = service.getTableSelector(generatorConfig, generatorParam.getDelFieldPrefix());
         tableSelector.setSchTableNames(tableNames);
 
         List<TableDefinition> tableDefinitions = tableSelector.getTableDefinitions();

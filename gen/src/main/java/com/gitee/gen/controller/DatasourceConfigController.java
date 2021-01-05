@@ -59,7 +59,7 @@ public class DatasourceConfigController {
         DatasourceConfig dataSourceConfig = datasourceConfigService.getById(id);
         GeneratorConfig generatorConfig = GeneratorConfig.build(dataSourceConfig);
         SQLService service = SQLServiceFactory.build(generatorConfig);
-        List<TableDefinition> list = service.getTableSelector(generatorConfig).getSimpleTableDefinitions();
+        List<TableDefinition> list = service.getTableSelector(generatorConfig, dataSourceConfig.getDelFieldPrefix()).getSimpleTableDefinitions();
         return Action.ok(list);
     }
 

@@ -88,6 +88,7 @@ public class SQLContext {
      */
     public String getJavaBeanNameLF() {
         String tableName = tableDefinition.getTableName();
+        // [xwc1125]如果有前缀，那么将会删除前缀
         if (delTablePrefix != null) {
             String[] split = delTablePrefix.split(",");
             for (String prefix : split) {
@@ -109,7 +110,15 @@ public class SQLContext {
 
     public String getJavaPkName() {
         if (javaPkColumn != null) {
-            return javaPkColumn.getJavaFieldName();
+            // [xwc1125] 删除字段前缀
+            String columnName = javaPkColumn.getColumnName();
+            if (delFieldPrefix != null && delFieldPrefix != "") {
+                String[] split = delFieldPrefix.split(",");
+                for (String prefix : split) {
+                    columnName = columnName.startsWith(prefix) && !StringUtils.isEmpty(prefix) ? columnName.replace(prefix, "") : columnName;
+                }
+            }
+            return FieldUtil.underlineFilter(columnName);
         }
         return "" ;
     }
@@ -163,4 +172,5 @@ public class SQLContext {
     public void setDbName(String dbName) {
         this.dbName = dbName;
     }
+
 }
