@@ -11,26 +11,33 @@ import com.gitee.gen.entity.TemplateConfig;
 import com.gitee.gen.service.DatasourceConfigService;
 import com.gitee.gen.service.GenerateHistoryService;
 import com.gitee.gen.service.TemplateConfigService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
+/**
+ * Description:
+ * </p>
+ * @Author: xwc1125
+ * @Date: 2021-01-05 11:51:44
+ * @Copyright Copyright@2021
+ */
 @RestController
 @RequestMapping("history")
 public class GenerateHistoryController {
 
-    @Autowired
+    @Resource
     private GenerateHistoryService generateHistoryService;
 
-    @Autowired
+    @Resource
     private DatasourceConfigService datasourceConfigService;
 
-    @Autowired
+    @Resource
     private TemplateConfigService templateConfigService;
 
     /**
@@ -66,7 +73,7 @@ public class GenerateHistoryController {
         if (datasourceConfig == null) {
             return null;
         }
-        String tpl = "%s（%s:%s）";
+        String tpl = "%s（%s:%s）" ;
         return String.format(tpl, datasourceConfig.getDbName(), datasourceConfig.getHost(), datasourceConfig.getPort());
     }
 

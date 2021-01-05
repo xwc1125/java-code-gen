@@ -40,11 +40,10 @@ public class GeneratorService {
     @Value("${gen.format-xml:false}")
     private String formatXml;
 
-
     /**
      * 生成代码内容,map的
      *
-     * @param generatorParam 生成参数
+     * @param generatorParam  生成参数
      * @param generatorConfig 数据源配置
      * @return 一张表对应多个模板
      */
@@ -54,7 +53,8 @@ public class GeneratorService {
 
         for (SQLContext sqlContext : contextList) {
             setPackageName(sqlContext, generatorParam.getPackageName());
-            setDelPrefix(sqlContext, generatorParam.getDelPrefix());
+            setDelTablePrefix(sqlContext, generatorParam.getDelTablePrefix());
+            setDelFieldPrefix(sqlContext, generatorParam.getDelFieldPrefix());
             for (int tcId : generatorParam.getTemplateConfigIdList()) {
                 TemplateConfig template = templateConfigService.getById(tcId);
                 String folder = template.getName();
@@ -84,11 +84,10 @@ public class GeneratorService {
         return content;
     }
 
-
     /**
      * 返回SQL上下文列表
      *
-     * @param generatorParam 参数
+     * @param generatorParam  参数
      * @param generatorConfig 配置
      * @return 返回SQL上下文
      */
@@ -118,15 +117,21 @@ public class GeneratorService {
         }
     }
 
-    private void setDelPrefix(SQLContext sqlContext, String delPrefix) {
-        if (StringUtils.hasText(delPrefix)) {
-            sqlContext.setDelPrefix(delPrefix);
+    private void setDelTablePrefix(SQLContext sqlContext, String delTablePrefix) {
+        if (StringUtils.hasText(delTablePrefix)) {
+            sqlContext.setDelTablePrefix(delTablePrefix);
+        }
+    }
+
+    private void setDelFieldPrefix(SQLContext sqlContext, String delFieldPrefix) {
+        if (StringUtils.hasText(delFieldPrefix)) {
+            sqlContext.setDelFieldPrefix(delFieldPrefix);
         }
     }
 
     private String doGenerator(SQLContext sqlContext, String template) {
         if (template == null) {
-            return "";
+            return "" ;
         }
         VelocityContext context = new VelocityContext();
 

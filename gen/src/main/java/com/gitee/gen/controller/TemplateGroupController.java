@@ -4,12 +4,12 @@ import com.gitee.gen.common.Action;
 import com.gitee.gen.common.Result;
 import com.gitee.gen.entity.TemplateGroup;
 import com.gitee.gen.service.TemplateGroupService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -21,7 +21,7 @@ import java.util.List;
 @RequestMapping("group")
 public class TemplateGroupController {
 
-    @Autowired
+    @Resource
     private TemplateGroupService templateGroupService;
 
     /**

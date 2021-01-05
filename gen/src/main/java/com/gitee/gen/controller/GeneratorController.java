@@ -7,10 +7,11 @@ import com.gitee.gen.entity.DatasourceConfig;
 import com.gitee.gen.gen.GeneratorConfig;
 import com.gitee.gen.service.DatasourceConfigService;
 import com.gitee.gen.service.GeneratorService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.annotation.Resource;
 
 /**
  * @author tanghc
@@ -19,10 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("generate")
 public class GeneratorController {
 
-    @Autowired
+    @Resource
     private DatasourceConfigService datasourceConfigService;
 
-    @Autowired
+    @Resource
     private GeneratorService generatorService;
 
     /**

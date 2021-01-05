@@ -10,12 +10,12 @@ import com.gitee.gen.gen.SQLService;
 import com.gitee.gen.gen.SQLServiceFactory;
 import com.gitee.gen.gen.TableDefinition;
 import com.gitee.gen.service.DatasourceConfigService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -27,7 +27,7 @@ import java.util.stream.Stream;
 @RequestMapping("datasource")
 public class DatasourceConfigController {
 
-    @Autowired
+    @Resource
     private DatasourceConfigService datasourceConfigService;
 
     @RequestMapping("/add")
@@ -63,7 +63,6 @@ public class DatasourceConfigController {
         return Action.ok(list);
     }
 
-
     @RequestMapping("/test")
     public Result test(@RequestBody DatasourceConfig datasourceConfig) {
         String error = DBConnect.testConnection(GeneratorConfig.build(datasourceConfig));
@@ -82,6 +81,7 @@ public class DatasourceConfigController {
     }
 
     private static class DbTypeShow {
+
         private String label;
         private Integer dbType;
 
@@ -106,6 +106,5 @@ public class DatasourceConfigController {
             this.dbType = dbType;
         }
     }
-
 
 }

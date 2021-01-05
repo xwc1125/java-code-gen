@@ -2,79 +2,118 @@ package com.gitee.gen.common;
 
 import java.util.List;
 
+/**
+ * Description:
+ * </p>
+ *
+ * @Author: xwc1125
+ * @Date: 2021-01-05 11:53:17
+ * @Copyright Copyright@2021
+ */
 public class GeneratorParam {
-	/** datasource_config主键 */
-	private int datasourceConfigId;
 
-	/** 表名 */
-	private List<String> tableNames;
+    /**
+     * datasource_config主键
+     */
+    private int datasourceConfigId;
 
-	/** template_config主键 */
-	private List<Integer> templateConfigIdList;
+    /**
+     * 表名
+     */
+    private List<String> tableNames;
 
-	private String packageName;
+    /**
+     * template_config主键
+     */
+    private List<Integer> templateConfigIdList;
 
-	private String delPrefix;
+    private String packageName;
 
-	private String charset = "UTF-8";
+    /**
+     * 删除table前缀
+     */
+    private String delTablePrefix;
+    /**
+     * 删除field前缀
+     */
+    private String delFieldPrefix;
 
-	public int getDatasourceConfigId() {
-		return datasourceConfigId;
-	}
+    private String charset = "UTF-8" ;
 
-	public void setDatasourceConfigId(int datasourceConfigId) {
-		this.datasourceConfigId = datasourceConfigId;
-	}
+    public int getDatasourceConfigId() {
+        return datasourceConfigId;
+    }
 
-	public List<String> getTableNames() {
-		return tableNames;
-	}
+    public void setDatasourceConfigId(int datasourceConfigId) {
+        this.datasourceConfigId = datasourceConfigId;
+    }
 
-	public void setTableNames(List<String> tableNames) {
-		this.tableNames = tableNames;
-	}
+    public List<String> getTableNames() {
+        return tableNames;
+    }
 
-	public List<Integer> getTemplateConfigIdList() {
-		return templateConfigIdList;
-	}
+    public void setTableNames(List<String> tableNames) {
+        this.tableNames = tableNames;
+    }
 
-	public void setTemplateConfigIdList(List<Integer> templateConfigIdList) {
-		this.templateConfigIdList = templateConfigIdList;
-	}
+    public List<Integer> getTemplateConfigIdList() {
+        return templateConfigIdList;
+    }
 
-	public String getPackageName() {
-		return packageName;
-	}
+    public void setTemplateConfigIdList(List<Integer> templateConfigIdList) {
+        this.templateConfigIdList = templateConfigIdList;
+    }
 
-	public void setPackageName(String packageName) {
-		this.packageName = packageName;
-	}
+    public String getPackageName() {
+        return packageName;
+    }
 
-	public String getDelPrefix() {
-		return delPrefix;
-	}
+    public void setPackageName(String packageName) {
+        this.packageName = packageName;
+    }
 
-	public void setDelPrefix(String delPrefix) {
-		this.delPrefix = delPrefix;
-	}
+    public String getDelTablePrefix() {
+        return delTablePrefix;
+    }
 
-	public String getCharset() {
-		return charset;
-	}
+    public void setDelTablePrefix(String delTablePrefix) {
+        this.delTablePrefix = delTablePrefix;
+    }
 
-	public void setCharset(String charset) {
-		this.charset = charset;
-	}
+    public String getDelFieldPrefix() {
+        return delFieldPrefix;
+    }
 
-	@Override
-	public String toString() {
-		return "GeneratorParam{" +
-				"datasourceConfigId=" + datasourceConfigId +
-				", tableNames=" + tableNames +
-				", templateConfigIdList=" + templateConfigIdList +
-				", packageName='" + packageName + '\'' +
-				", delPrefix='" + delPrefix + '\'' +
-				", charset='" + charset + '\'' +
-				'}';
-	}
+    public void setDelFieldPrefix(String delFieldPrefix) {
+        this.delFieldPrefix = delFieldPrefix;
+    }
+
+    public String getCharset() {
+        return charset;
+    }
+
+    public void setCharset(String charset) {
+        this.charset = charset;
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"datasourceConfigId\":")
+                .append(datasourceConfigId);
+        sb.append(",\"tableNames\":")
+                .append(tableNames);
+        sb.append(",\"templateConfigIdList\":")
+                .append(templateConfigIdList);
+        sb.append(",\"packageName\":\"")
+                .append(packageName).append('\"');
+        sb.append(",\"delTablePrefix\":\"")
+                .append(delTablePrefix).append('\"');
+        sb.append(",\"delFieldPrefix\":\"")
+                .append(delFieldPrefix).append('\"');
+        sb.append(",\"charset\":\"")
+                .append(charset).append('\"');
+        sb.append('}');
+        return sb.toString();
+    }
 }

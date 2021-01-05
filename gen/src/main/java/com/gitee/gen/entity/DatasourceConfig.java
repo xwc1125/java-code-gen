@@ -1,34 +1,58 @@
 package com.gitee.gen.entity;
 
-
-import java.util.Objects;
-
 /**
  * 数据源配置表
  */
 public class DatasourceConfig {
+
     private Integer id;
-    /** 数据库类型，1：MySql, 2:Oracle, 3:sqlserver */
+    /**
+     * 数据库类型，1：MySql, 2:Oracle, 3:sqlserver
+     */
     private Integer dbType;
-    /** 数据库驱动 */
+    /**
+     * 数据库驱动
+     */
     private String driverClass;
-    /** 数据库名称 */
+    /**
+     * 数据库名称
+     */
     private String dbName;
-    /** 数据库host */
+    /**
+     * 数据库host
+     */
     private String host;
-    /** 数据库端口 */
+    /**
+     * 数据库端口
+     */
     private Integer port;
-    /** 数据库用户名 */
+    /**
+     * 数据库用户名
+     */
     private String username;
-    /** 数据库密码 */
+    /**
+     * 数据库密码
+     */
     private String password;
-    /** 是否已删除，1：已删除，0：未删除 */
+    /**
+     * 是否已删除，1：已删除，0：未删除
+     */
     private Integer isDeleted;
-    /** 包名*/
+    /**
+     * 包名
+     */
     private String packageName;
-    /** 删除的前缀*/
-    private String delPrefix;
-    /** 代码生成器模板组id*/
+    /**
+     * 删除的表前缀
+     */
+    private String delTablePrefix;
+    /**
+     * 删除的字段前缀
+     */
+    private String delFieldPrefix;
+    /**
+     * 代码生成器模板组id
+     */
     private Integer groupId;
 
     public Integer getId() {
@@ -111,12 +135,20 @@ public class DatasourceConfig {
         this.packageName = packageName;
     }
 
-    public String getDelPrefix() {
-        return delPrefix;
+    public String getDelTablePrefix() {
+        return delTablePrefix;
     }
 
-    public void setDelPrefix(String delPrefix) {
-        this.delPrefix = delPrefix;
+    public void setDelTablePrefix(String delTablePrefix) {
+        this.delTablePrefix = delTablePrefix;
+    }
+
+    public String getDelFieldPrefix() {
+        return delFieldPrefix;
+    }
+
+    public void setDelFieldPrefix(String delFieldPrefix) {
+        this.delFieldPrefix = delFieldPrefix;
     }
 
     public Integer getGroupId() {
@@ -128,44 +160,35 @@ public class DatasourceConfig {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DatasourceConfig that = (DatasourceConfig) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(dbType, that.dbType) &&
-                Objects.equals(driverClass, that.driverClass) &&
-                Objects.equals(dbName, that.dbName) &&
-                Objects.equals(host, that.host) &&
-                Objects.equals(port, that.port) &&
-                Objects.equals(username, that.username) &&
-                Objects.equals(password, that.password) &&
-                Objects.equals(isDeleted, that.isDeleted) &&
-                Objects.equals(packageName, that.packageName) &&
-                Objects.equals(delPrefix, that.delPrefix) &&
-                Objects.equals(groupId, that.groupId);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, dbType, driverClass, dbName, host, port, username, password, isDeleted, packageName, delPrefix, groupId);
-    }
-
-    @Override
     public String toString() {
-        return "DatasourceConfig{" +
-                "id=" + id +
-                ", dbType=" + dbType +
-                ", driverClass='" + driverClass + '\'' +
-                ", dbName='" + dbName + '\'' +
-                ", host='" + host + '\'' +
-                ", port=" + port +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", isDeleted=" + isDeleted +
-                ", packageName='" + packageName + '\'' +
-                ", delPrefix='" + delPrefix + '\'' +
-                ", groupId='" + groupId + '\'' +
-                '}';
+        final StringBuilder sb = new StringBuilder("{");
+        sb.append("\"id\":")
+                .append(id);
+        sb.append(",\"dbType\":")
+                .append(dbType);
+        sb.append(",\"driverClass\":\"")
+                .append(driverClass).append('\"');
+        sb.append(",\"dbName\":\"")
+                .append(dbName).append('\"');
+        sb.append(",\"host\":\"")
+                .append(host).append('\"');
+        sb.append(",\"port\":")
+                .append(port);
+        sb.append(",\"username\":\"")
+                .append(username).append('\"');
+        sb.append(",\"password\":\"")
+                .append(password).append('\"');
+        sb.append(",\"isDeleted\":")
+                .append(isDeleted);
+        sb.append(",\"packageName\":\"")
+                .append(packageName).append('\"');
+        sb.append(",\"delTablePrefix\":\"")
+                .append(delTablePrefix).append('\"');
+        sb.append(",\"delFieldPrefix\":\"")
+                .append(delFieldPrefix).append('\"');
+        sb.append(",\"groupId\":")
+                .append(groupId);
+        sb.append('}');
+        return sb.toString();
     }
 }

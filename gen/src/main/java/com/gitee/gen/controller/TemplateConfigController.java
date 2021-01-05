@@ -7,12 +7,12 @@ import com.gitee.gen.entity.TemplateGroup;
 import com.gitee.gen.service.TemplateConfigService;
 import com.gitee.gen.service.TemplateGroupService;
 import org.apache.commons.lang.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -24,10 +24,10 @@ import java.util.stream.Collectors;
 @RequestMapping("template")
 public class TemplateConfigController {
 
-    @Autowired
+    @Resource
     private TemplateConfigService templateConfigService;
 
-    @Autowired
+    @Resource
     private TemplateGroupService templateGroupService;
 
     @RequestMapping("/add")
