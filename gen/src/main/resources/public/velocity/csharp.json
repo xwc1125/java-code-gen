@@ -1,6 +1,24 @@
 {
   "data": [
     {
+      "expression": "common",
+      "text": "",
+      "children": [
+        {
+          "expression": "${author}",
+          "text": "编辑者"
+        },
+        {
+          "expression": "${datetime}",
+          "text": "时间戳，格式：(yyyy-MM-dd HH:mm:ss)"
+        },
+        {
+          "expression": "${year}",
+          "text": "年份"
+        }
+      ]
+    },
+    {
       "expression": "${pk}",
       "text": "",
       "children": [
@@ -39,18 +57,6 @@
         {
           "expression": "${pk.comment}",
           "text": "主键字段注释"
-        },
-        {
-          "expression": "${author}",
-          "text": "编辑者"
-        },
-        {
-          "expression": "${datetime}",
-          "text": "时间戳，格式：(yyyy-MM-dd HH:mm:ss)"
-        },
-        {
-          "expression": "${year}",
-          "text": "年份"
         }
       ]
     },
@@ -99,18 +105,6 @@
         {
           "expression": "${table.comment}",
           "text": "表注释"
-        },
-        {
-          "expression": "${author}",
-          "text": "编辑者"
-        },
-        {
-          "expression": "${datetime}",
-          "text": "时间戳，格式：(yyyy-MM-dd HH:mm:ss)"
-        },
-        {
-          "expression": "${year}",
-          "text": "年份"
         }
       ]
     },
@@ -157,18 +151,6 @@
         {
           "expression": "${column.comment}",
           "text": "字段注释"
-        },
-        {
-          "expression": "${author}",
-          "text": "编辑者"
-        },
-        {
-          "expression": "${datetime}",
-          "text": "时间戳，格式：(yyyy-MM-dd HH:mm:ss)"
-        },
-        {
-          "expression": "${year}",
-          "text": "年份"
         }
       ]
     }
