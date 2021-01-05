@@ -29,9 +29,14 @@ public class SQLContext {
     private String packageName;
 
     /**
-     * 删除的前缀
+     * 删除的表前缀
      */
-    private String delPrefix;
+    private String delTablePrefix;
+
+    /**
+     * 删除的字段前缀
+     */
+    private String delFieldPrefix;
 
     /**
      * 数据库名
@@ -68,6 +73,7 @@ public class SQLContext {
 
     /**
      * 返回类名
+     *
      * @return
      */
     public String getClassName() {
@@ -82,9 +88,9 @@ public class SQLContext {
      */
     public String getJavaBeanNameLF() {
         String tableName = tableDefinition.getTableName();
-        if(delPrefix != null){
-            String[] split = delPrefix.split(",");
-            for (String prefix : split){
+        if (delTablePrefix != null) {
+            String[] split = delTablePrefix.split(",");
+            for (String prefix : split) {
                 tableName = tableName.startsWith(prefix) && !StringUtils.isEmpty(prefix) ? tableName.replace(prefix, "") : tableName;
             }
         }
@@ -98,28 +104,28 @@ public class SQLContext {
         if (javaPkColumn != null) {
             return javaPkColumn.getColumnName();
         }
-        return "";
+        return "" ;
     }
 
     public String getJavaPkName() {
         if (javaPkColumn != null) {
             return javaPkColumn.getJavaFieldName();
         }
-        return "";
+        return "" ;
     }
 
     public String getJavaPkType() {
         if (javaPkColumn != null) {
             return javaPkColumn.getJavaType();
         }
-        return "";
+        return "" ;
     }
 
     public String getMybatisPkType() {
         if (javaPkColumn != null) {
             return javaPkColumn.getMybatisJdbcType();
         }
-        return "";
+        return "" ;
     }
 
     public TableDefinition getTableDefinition() {
@@ -134,12 +140,20 @@ public class SQLContext {
         this.packageName = packageName;
     }
 
-    public String getDelPrefix() {
-        return delPrefix;
+    public String getDelTablePrefix() {
+        return delTablePrefix;
     }
 
-    public void setDelPrefix(String delPrefix) {
-        this.delPrefix = delPrefix;
+    public void setDelTablePrefix(String delTablePrefix) {
+        this.delTablePrefix = delTablePrefix;
+    }
+
+    public String getDelFieldPrefix() {
+        return delFieldPrefix;
+    }
+
+    public void setDelFieldPrefix(String delFieldPrefix) {
+        this.delFieldPrefix = delFieldPrefix;
     }
 
     public String getDbName() {

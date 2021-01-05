@@ -6,6 +6,7 @@ package com.gitee.gen.entity;
  * @Description: TODO
  */
 public class TemplateGroup {
+
     private Integer id;
     private String groupName;
     private Integer isDeleted;
@@ -32,20 +33,6 @@ public class TemplateGroup {
 
     public Integer getIsDelete() {
         return this.isDeleted;
-    }
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) { return true; }
-        if (o == null || getClass() != o.getClass()) {return false;}
-        TemplateGroup that = (TemplateGroup) o;
-        return id.equals(that.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return java.util.Objects.hash(id);
     }
 
     @Override

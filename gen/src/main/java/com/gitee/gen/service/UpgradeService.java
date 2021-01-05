@@ -16,15 +16,16 @@ import java.util.Objects;
 
 /**
  * 升级
+ *
  * @author tanghc
  */
 @Service
 public class UpgradeService {
 
-    public static final String TABLE_DATASOURCE_CONFIG = "datasource_config";
-    public static final String TABLE_TEMPLATE_CONFIG = "template_config";
-    public static final String TABLE_TEMPLATE_GROUP = "template_group";
-    public static final String TABLE_GENERATE_HISTORY = "generate_history";
+    public static final String TABLE_DATASOURCE_CONFIG = "datasource_config" ;
+    public static final String TABLE_TEMPLATE_CONFIG = "template_config" ;
+    public static final String TABLE_TEMPLATE_GROUP = "template_group" ;
+    public static final String TABLE_GENERATE_HISTORY = "generate_history" ;
 
     @Autowired
     private UpgradeMapper upgradeMapper;
@@ -33,7 +34,7 @@ public class UpgradeService {
     private String driverClassName;
 
     public static void initDatabase() {
-        String filename = "gen.db";
+        String filename = "gen.db" ;
         String filepath = System.getProperty("user.dir") + "/" + filename;
         File dbFile = new File(filepath);
         if (!dbFile.exists()) {
@@ -64,7 +65,8 @@ public class UpgradeService {
         }
 
         this.addColumn(TABLE_DATASOURCE_CONFIG, "package_name", "varchar(100)");
-        this.addColumn(TABLE_DATASOURCE_CONFIG, "del_prefix", "varchar(200)");
+        this.addColumn(TABLE_DATASOURCE_CONFIG, "del_table_prefix", "varchar(200)");
+        this.addColumn(TABLE_DATASOURCE_CONFIG, "del_field_prefix", "varchar(200)");
         this.addColumn(TABLE_DATASOURCE_CONFIG, "group_id", "int");
 
         this.addColumn(TABLE_TEMPLATE_CONFIG, "group_id", "int");
@@ -78,9 +80,10 @@ public class UpgradeService {
 
     /**
      * 添加表字段
-     * @param tableName 表名
+     *
+     * @param tableName  表名
      * @param columnName 字段名
-     * @param type 字段类型，如：varchar(128),text,integer
+     * @param type       字段类型，如：varchar(128),text,integer
      * @return 返回true，插入成功
      */
     public boolean addColumn(String tableName, String columnName, String type) {
@@ -97,6 +100,7 @@ public class UpgradeService {
 
     /**
      * 创建表
+     *
      * @param tableName 表名
      * @return 创建成功返回true
      */
@@ -110,8 +114,8 @@ public class UpgradeService {
     }
 
     private String loadDDL(String tableName) {
-        String tmp_mysql = "ddl_%s_mysql.txt";
-        String tmp_sqlite = "ddl_%s_sqlite.txt";
+        String tmp_mysql = "ddl_%s_mysql.txt" ;
+        String tmp_sqlite = "ddl_%s_sqlite.txt" ;
         String tmp = isMysql() ? tmp_mysql : tmp_sqlite;
         String filename = "upgrade/" + String.format(tmp, tableName);
         ClassPathResource resource = new ClassPathResource(filename);
@@ -129,7 +133,8 @@ public class UpgradeService {
 
     /**
      * 判断列是否存在
-     * @param tableName 表名
+     *
+     * @param tableName  表名
      * @param columnName 列名
      * @return true：存在
      */
@@ -143,6 +148,7 @@ public class UpgradeService {
 
     /**
      * 表是否存在
+     *
      * @param tableName
      * @return
      */
