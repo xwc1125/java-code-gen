@@ -15,10 +15,12 @@ public abstract class TableSelector {
     private ColumnSelector columnSelector;
     private GeneratorConfig generatorConfig;
     private List<String> schTableNames;
+    private String delFieldPrefix;
 
-    public TableSelector(ColumnSelector columnSelector, GeneratorConfig generatorConfig) {
+    public TableSelector(ColumnSelector columnSelector, GeneratorConfig generatorConfig, String delFieldPrefix) {
         this.generatorConfig = generatorConfig;
         this.columnSelector = columnSelector;
+        this.delFieldPrefix = delFieldPrefix;
     }
 
     /**
@@ -45,7 +47,7 @@ public abstract class TableSelector {
             TableDefinition tableDefinition = this.buildTableDefinition(rowMap);
             String tableName = tableDefinition.getTableName();
             List<ColumnDefinition> columnDefinitions = columnSelector.getColumnDefinitions(tableName);
-            tableDefinition.setColumnDefinitions(buildRealColumnDefinitions(columnDefinitions, JavaColumnDefinition::new));
+            tableDefinition.setColumnDefinitions(buildRealColumnDefinitions(columnDefinitions, () -> new JavaColumnDefinition(delFieldPrefix)));
             tableDefinition.setCsharpColumnDefinitions(buildRealColumnDefinitions(columnDefinitions, CsharpColumnDefinition::new));
             tablesList.add(tableDefinition);
         }

@@ -28,8 +28,11 @@
       <el-form-item v-show="showTable" label="包名（package）">
         <el-input v-model="clientParam.packageName" placeholder="可选，如：cn.studyjava.xxx" show-word-limit maxlength="100" />
       </el-form-item>
-      <el-form-item v-show="showTable" label="删除前缀">
-        <el-input v-model="clientParam.delPrefix" placeholder="可选，如：sys_user对应Java类为User(多前缀逗号隔开)" show-word-limit maxlength="100" />
+      <el-form-item v-show="showTable" label="删除表前缀">
+        <el-input v-model="clientParam.delTablePrefix" placeholder="可选，如：sys_user对应Java类为User(多前缀逗号隔开)" show-word-limit maxlength="100" />
+      </el-form-item>
+      <el-form-item v-show="showTable" label="删除字段前缀">
+        <el-input v-model="clientParam.delFieldPrefix" placeholder="可选，如：c_user_info对应字段userInfo(多前缀逗号隔开)" show-word-limit maxlength="100" />
       </el-form-item>
     </el-form>
     <el-row v-show="showTable" :gutter="20">
@@ -145,10 +148,13 @@
         <el-form-item label="包名" prop="packageName">
           <el-input v-model="datasourceFormData.packageName" placeholder="包名（package）" show-word-limit maxlength="100" />
         </el-form-item>
-        <el-form-item label="删除前缀" prop="delPrefix">
-          <el-input v-model="datasourceFormData.delPrefix" placeholder="删除前缀（表名sys_user删除前缀sys_对应bean为User）多前缀逗号隔开" show-word-limit maxlength="200" />
+        <el-form-item label="删除表前缀" prop="delTablePrefix">
+          <el-input v-model="datasourceFormData.delTablePrefix" placeholder="删除表前缀（表名sys_user删除前缀sys_对应bean为User）多前缀逗号隔开" show-word-limit maxlength="200" />
         </el-form-item>
-        <el-form-item label="代码生成器模板" prop="delPrefix">
+        <el-form-item label="删除字段前缀" prop="delFieldPrefix">
+          <el-input v-model="datasourceFormData.delFieldPrefix" placeholder="删除字段前缀（表名c_user_info删除前缀c_对应userInfos）多前缀逗号隔开" show-word-limit maxlength="200" />
+        </el-form-item>
+        <el-form-item label="代码生成器模板" prop="delTablePrefix">
           <el-select
             v-model="datasourceFormData.groupId"
             placeholder="选择模板所在组"
@@ -207,7 +213,8 @@ export default {
         tableNames: [],
         templateConfigIdList: [],
         packageName: '',
-        delPrefix: '',
+        delTablePrefix: '',
+        delFieldPrefix: '',
         groupId: ''
       },
       tableSearch: '',
@@ -226,7 +233,8 @@ export default {
         password: '',
         dbName: '',
         packageName: '',
-        delPrefix: '',
+        delTablePrefix: '',
+        delFieldPrefix: '',
         groupId: ''
       },
       dbTypeConfig: [],
@@ -257,7 +265,8 @@ export default {
           this.groupId = item.groupId
           Object.assign(this.clientParam, {
             packageName: item.packageName,
-            delPrefix: item.delPrefix,
+            delTablePrefix: item.delTablePrefix,
+            delFieldPrefix: item.delFieldPrefix,
             groupId: item.groupId
           })
           break

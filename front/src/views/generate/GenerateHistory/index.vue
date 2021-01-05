@@ -24,12 +24,21 @@
         </template>
       </el-table-column>
       <el-table-column
-        label="删除前缀"
+        label="删除表前缀"
         width="100"
         show-overflow-tooltip
       >
         <template slot-scope="scope">
-          {{ scope.row.configContent.delPrefix }}
+          {{ scope.row.configContent.delTablePrefix }}
+        </template>
+      </el-table-column>
+      <el-table-column
+        label="删除字段前缀"
+        width="100"
+        show-overflow-tooltip
+      >
+        <template slot-scope="scope">
+          {{ scope.row.configContent.delFieldPrefix }}
         </template>
       </el-table-column>
       <el-table-column

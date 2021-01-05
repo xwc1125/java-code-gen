@@ -3,6 +3,7 @@ package com.gitee.gen.gen;
 import com.gitee.gen.gen.converter.ColumnTypeConverter;
 import com.gitee.gen.gen.converter.JavaColumnTypeConverter;
 import com.gitee.gen.util.FieldUtil;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,8 +14,9 @@ import java.util.Map;
 public class JavaColumnDefinition extends ColumnDefinition {
 
     private static final JavaColumnTypeConverter COLUMN_TYPE_CONVERTER = new JavaColumnTypeConverter();
-
     private static final Map<String, String> TYPE_MYBATIS_MAP = new HashMap<>(64);
+    private String delFieldPrefix = null;
+
     static {
         TYPE_MYBATIS_MAP.put(TypeEnum.BIT.getType(), "BOOLEAN");
         TYPE_MYBATIS_MAP.put(TypeEnum.BOOLEAN.getType(), "BOOLEAN");
@@ -28,6 +30,10 @@ public class JavaColumnDefinition extends ColumnDefinition {
         TYPE_MYBATIS_MAP.put(TypeEnum.VARCHAR.getType(), "VARCHAR");
         TYPE_MYBATIS_MAP.put(TypeEnum.DATETIME.getType(), "TIMESTAMP");
         TYPE_MYBATIS_MAP.put(TypeEnum.BLOB.getType(), "BLOB");
+    }
+
+    public JavaColumnDefinition(String delFieldPrefix) {
+        this.delFieldPrefix = delFieldPrefix;
     }
 
     public String getMybatisJdbcType() {
@@ -49,7 +55,14 @@ public class JavaColumnDefinition extends ColumnDefinition {
      * @return 返回java字段
      */
     public String getJavaFieldName() {
-        return FieldUtil.underlineFilter(getColumnName());
+        String columnName = getColumnName();
+        if (delFieldPrefix != null && delFieldPrefix != "") {
+            String[] split = delFieldPrefix.split(",");
+            for (String prefix : split) {
+                columnName = columnName.startsWith(prefix) && !StringUtils.isEmpty(prefix) ? columnName.replace(prefix, "") : columnName;
+            }
+        }
+        return FieldUtil.underlineFilter(columnName);
     }
 
     /**

@@ -14,22 +14,23 @@ import static com.gitee.gen.util.FieldUtil.convertString;
  * @author tanghc
  */
 public class PostgreSqlTableSelector extends TableSelector {
-    public PostgreSqlTableSelector(ColumnSelector columnSelector, GeneratorConfig generatorConfig) {
-        super(columnSelector, generatorConfig);
+
+    public PostgreSqlTableSelector(ColumnSelector columnSelector, GeneratorConfig generatorConfig, String delFieldPrefix) {
+        super(columnSelector, generatorConfig, delFieldPrefix);
     }
 
     private static String SHOW_TABLE_SQL =
             "SELECT relname, " +
-                "obj_description(oid) AS cmt " +
-            "FROM pg_class C " +
-            "WHERE relkind='r' AND relname NOT LIKE 'pg_%%' AND relname NOT LIKE 'sql_%%' AND relchecks=0 " +
-            "%s " +
-            "ORDER BY relname";
+                    "obj_description(oid) AS cmt " +
+                    "FROM pg_class C " +
+                    "WHERE relkind='r' AND relname NOT LIKE 'pg_%%' AND relname NOT LIKE 'sql_%%' AND relchecks=0 " +
+                    "%s " +
+                    "ORDER BY relname" ;
 
     @Override
     protected String getShowTablesSQL(String showParam) {
         List<String> tableNames = wrapTableNames();
-        String and = "";
+        String and = "" ;
         if (!tableNames.isEmpty()) {
             and = String.format("AND relname IN (%s)  ", String.join(",", tableNames));
         }
