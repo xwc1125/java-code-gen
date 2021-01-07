@@ -59,7 +59,7 @@ public class JavaColumnDefinition extends ColumnDefinition {
         if (delFieldPrefix != null && delFieldPrefix != "") {
             String[] split = delFieldPrefix.split(",");
             for (String prefix : split) {
-                columnName = columnName.startsWith(prefix) && !StringUtils.isEmpty(prefix) ? columnName.replace(prefix, "") : columnName;
+                columnName = columnName.startsWith(prefix) && !StringUtils.isEmpty(prefix) ? columnName.replaceFirst(prefix, "") : columnName;
             }
         }
         return FieldUtil.underlineFilter(columnName);
