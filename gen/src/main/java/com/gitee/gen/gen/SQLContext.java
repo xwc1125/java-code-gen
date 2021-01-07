@@ -96,7 +96,7 @@ public class SQLContext {
         if (delTablePrefix != null) {
             String[] split = delTablePrefix.split(",");
             for (String prefix : split) {
-                tableName = tableName.startsWith(prefix) && !StringUtils.isEmpty(prefix) ? tableName.replace(prefix, "") : tableName;
+                tableName = tableName.startsWith(prefix) && !StringUtils.isEmpty(prefix) ? tableName.replaceFirst(prefix, "") : tableName;
             }
         }
 
@@ -119,7 +119,7 @@ public class SQLContext {
             if (delFieldPrefix != null && delFieldPrefix != "") {
                 String[] split = delFieldPrefix.split(",");
                 for (String prefix : split) {
-                    columnName = columnName.startsWith(prefix) && !StringUtils.isEmpty(prefix) ? columnName.replace(prefix, "") : columnName;
+                    columnName = columnName.startsWith(prefix) && !StringUtils.isEmpty(prefix) ? columnName.replaceFirst(prefix, "") : columnName;
                 }
             }
             return FieldUtil.underlineFilter(columnName);
