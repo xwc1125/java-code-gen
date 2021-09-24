@@ -23,7 +23,7 @@
 
 - 方式一：下载公共镜像
 
-`docker pull tanghc2020/gen:latest`
+`docker pull xwc1125/java-code-gen:v1.0.2`
 
 下载完毕后，执行`docker run --name gen -p 6969:6969 -d <镜像ID>`
 
@@ -75,8 +75,3 @@ Mac/Linux系统可直接执行`build.sh`进行构建，构建结果在`dist`文�
 ![代码生成](https://images.gitee.com/uploads/images/2020/0724/180853_df66e76d_332975.png "gen7.png")
 
 ![生成结果](https://images.gitee.com/uploads/images/2020/0731/085506_9d66201f_332975.png "gen8.png")
-
-
-## 沟通交流
-
-Q群：167643071
