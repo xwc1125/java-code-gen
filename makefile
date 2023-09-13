@@ -1,8 +1,8 @@
 # 需要在外面进行go build
-# 构建镜像：make docker-build TAG=v1.0.2
-# 推送镜像：make docker-push TAG=v1.0.2
-# 删除容器：make docker-rm TAG=v1.0.2
-# 删除镜像：make docker-rmi TAG=v1.0.2
+# 构建镜像：make docker-build TAG=v1.0.3
+# 推送镜像：make docker-push TAG=v1.0.3
+# 删除容器：make docker-rm TAG=v1.0.3
+# 删除镜像：make docker-rmi TAG=v1.0.3
 
 # 应用名称
 APP_NAME=java-code-gen

@@ -1,4 +1,4 @@
-FROM java:8
+FROM openjdk:8
 MAINTAINER xwc1125 <xwc1125@qq.com>
 VOLUME /tmp
 ADD gen/target/*.jar gen.jar
